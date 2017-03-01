@@ -1,0 +1,15 @@
+{
+    "name": "paysera/lib-wallet-transfer-rest-client",
+    "description": "PHP REST client for Paysera.com Wallet Transfers",
+    "autoload": {
+        "psr-4": {
+            "Paysera\\Client\\TransfersClient\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "paysera/lib-rest-client-common": "^1.0",
+        "fig/http-message-util": "^1.0"
+    },
+    "minimum-stability": "stable"
+}
