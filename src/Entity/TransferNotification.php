@@ -4,7 +4,7 @@ namespace Paysera\Client\TransfersClient\Entity;
 
 use Paysera\Component\RestClientCommon\Entity\Entity;
 
-class TransferNotifcation extends Entity
+class TransferNotification extends Entity
 {
     /**
      * @return string

@@ -7,14 +7,14 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 class TransferInitiator extends Entity
 {
     /**
-     * @return string|null
+     * @return integer|null
      */
     public function getUserId()
     {
         return $this->get('user_id');
     }
     /**
-     * @param string $userId
+     * @param integer $userId
      * @return $this
      */
     public function setUserId($userId)
@@ -23,14 +23,14 @@ class TransferInitiator extends Entity
         return $this;
     }
     /**
-     * @return string|null
+     * @return integer|null
      */
     public function getClientId()
     {
         return $this->get('client_id');
     }
     /**
-     * @param string $clientId
+     * @param integer $clientId
      * @return $this
      */
     public function setClientId($clientId)

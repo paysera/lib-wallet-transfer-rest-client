@@ -134,4 +134,20 @@ class TransferOutput extends Entity
         $this->setByReference('additional_information', $additionalInformation->getDataByReference());
         return $this;
     }
+    /**
+     * @return TransferPasswordOutput|null
+     */
+    public function getPassword()
+    {
+        return (new TransferPasswordOutput())->setDataByReference($this->getByReference('password'));
+    }
+    /**
+     * @param TransferPasswordOutput $password
+     * @return $this
+     */
+    public function setPassword(TransferPasswordOutput $password)
+    {
+        $this->setByReference('password', $password->getDataByReference());
+        return $this;
+    }
 }

@@ -7,17 +7,17 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 class TransferNotifications extends Entity
 {
     /**
-     * @return TransferNotifcation|null
+     * @return TransferNotification|null
      */
     public function getDone()
     {
-        return (new TransferNotifcation())->setDataByReference($this->getByReference('done'));
+        return (new TransferNotification())->setDataByReference($this->getByReference('done'));
     }
     /**
-     * @param TransferNotifcation $done
+     * @param TransferNotification $done
      * @return $this
      */
-    public function setDone(TransferNotifcation $done)
+    public function setDone(TransferNotification $done)
     {
         $this->setByReference('done', $done->getDataByReference());
         return $this;

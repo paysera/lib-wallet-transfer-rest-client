@@ -71,19 +71,19 @@ class TransfersFilter extends Entity
         return $this;
     }
     /**
-     * @return any|null
+     * @return string[]|null
      */
     public function getStatuses()
     {
-        return (new any())->setDataByReference($this->getByReference('statuses'));
+        return $this->get('statuses');
     }
     /**
-     * @param any $statuses
+     * @param string[] $statuses
      * @return $this
      */
-    public function setStatuses(any $statuses)
+    public function setStatuses(array $statuses)
     {
-        $this->setByReference('statuses', $statuses->getDataByReference());
+        $this->set('statuses', $statuses);
         return $this;
     }
 }

@@ -4,7 +4,7 @@ namespace Paysera\Client\TransfersClient\Entity;
 
 use Paysera\Component\RestClientCommon\Entity\Entity;
 
-class TransferPassword34 extends Entity
+class TransferPasswordOutput extends Entity
 {
     /**
      * @return string|null

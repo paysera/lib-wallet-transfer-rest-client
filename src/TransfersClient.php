@@ -16,7 +16,7 @@ class TransfersClient
     }
 
     /**
-     * Sign and reserve money for transfer. Returns error if no funds available.
+     * It reserves funds for transfer and makes it &quot;reserved&quot;. It&#039;s enough for transfer to be processed. If there are not enough funds, any limits are reached etc., transfer will be still &quot;new&quot; and no action will take place. Returns error if no funds available.
      * PUT /transfers/{id}/reserve
      *
      * @param string $id
@@ -36,7 +36,7 @@ class TransfersClient
     }
 
     /**
-     * Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails.
+     * Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails. This only makes transfer &quot;reserved&quot;, so it&#039;s visible in our Web UI for signing
      * PUT /transfers/{id}/register
      *
      * @param string $id
@@ -48,6 +48,26 @@ class TransfersClient
         $request = $this->apiClient->createRequest(
             RequestMethodInterface::METHOD_PUT,
             sprintf('transfers/%s/register', urlencode($id)),
+            $transferRegistrationParameters
+        );
+        $data = $this->apiClient->makeRequest($request);
+
+        return new Entities\TransferOutput($data);
+    }
+
+    /**
+     * Signs the transfer
+     * PUT /transfers/{id}/sign
+     *
+     * @param string $id
+     * @param Entities\TransferRegistrationParameters $transferRegistrationParameters
+     * @return Entities\TransferOutput
+     */
+    public function signTransfer($id, Entities\TransferRegistrationParameters $transferRegistrationParameters)
+    {
+        $request = $this->apiClient->createRequest(
+            RequestMethodInterface::METHOD_PUT,
+            sprintf('transfers/%s/sign', urlencode($id)),
             $transferRegistrationParameters
         );
         $data = $this->apiClient->makeRequest($request);

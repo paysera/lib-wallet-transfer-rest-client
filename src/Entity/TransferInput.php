@@ -151,17 +151,17 @@ class TransferInput extends Entity
         return $this;
     }
     /**
-     * @return TransferPassword34|null
+     * @return TransferPassword|null
      */
     public function getPassword()
     {
-        return (new TransferPassword34())->setDataByReference($this->getByReference('password'));
+        return (new TransferPassword())->setDataByReference($this->getByReference('password'));
     }
     /**
-     * @param TransferPassword34 $password
+     * @param TransferPassword $password
      * @return $this
      */
-    public function setPassword(TransferPassword34 $password)
+    public function setPassword(TransferPassword $password)
     {
         $this->setByReference('password', $password->getDataByReference());
         return $this;
