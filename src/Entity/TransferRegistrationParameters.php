@@ -36,4 +36,20 @@ class TransferRegistrationParameters extends Entity
         $this->setByReference('convert_currency', $data);
         return $this;
     }
+    /**
+     * @return string|null
+     */
+    public function getUserIp()
+    {
+        return $this->get('user_ip');
+    }
+    /**
+     * @param string $userIp
+     * @return $this
+     */
+    public function setUserIp($userIp)
+    {
+        $this->set('user_ip', $userIp);
+        return $this;
+    }
 }

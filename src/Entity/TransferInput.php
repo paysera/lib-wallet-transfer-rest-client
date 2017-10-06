@@ -215,6 +215,22 @@ class TransferInput extends Entity
         return $this;
     }
     /**
+     * @return boolean|null
+     */
+    public function isAutoProcessToDone()
+    {
+        return $this->get('auto_process_to_done');
+    }
+    /**
+     * @param boolean $autoProcessToDone
+     * @return $this
+     */
+    public function setAutoProcessToDone($autoProcessToDone)
+    {
+        $this->set('auto_process_to_done', $autoProcessToDone);
+        return $this;
+    }
+    /**
      * @return \DateTimeImmutable|null
      */
     public function getReserveUntil()
@@ -228,6 +244,22 @@ class TransferInput extends Entity
     public function setReserveUntil(\DateTimeInterface $reserveUntil)
     {
         $this->set('reserve_until', $reserveUntil->getTimestamp());
+        return $this;
+    }
+    /**
+     * @return TransferCallback|null
+     */
+    public function getCallback()
+    {
+        return (new TransferCallback())->setDataByReference($this->getByReference('callback'));
+    }
+    /**
+     * @param TransferCallback $callback
+     * @return $this
+     */
+    public function setCallback(TransferCallback $callback)
+    {
+        $this->setByReference('callback', $callback->getDataByReference());
         return $this;
     }
 }
