@@ -89,6 +89,17 @@ $result = $transfersClient->getTransfer($id);
 ```
 ---
 
+
+Get transfers.
+
+
+```php
+
+$result = $transfersClient->getTransfers($transfersFilter);
+```
+---
+
+
 Revoke transfer.
 
 

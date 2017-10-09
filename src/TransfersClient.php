@@ -132,4 +132,22 @@ class TransfersClient
         return new Entities\TransferOutput($data);
     }
 
+    /**
+     * Get list of transfers by filter
+     * GET /transfers
+     *
+     * @param Entities\TransfersFilter $transfersFilter
+     * @return Entities\FilteredTransfersResult
+     */
+    public function getTransfers(Entities\TransfersFilter $transfersFilter)
+    {
+        $request = $this->apiClient->createRequest(
+            RequestMethodInterface::METHOD_GET,
+            'transfers',
+            $transfersFilter
+        );
+        $data = $this->apiClient->makeRequest($request);
+
+        return new Entities\FilteredTransfersResult($data, 'transfers');
+    }
 }
