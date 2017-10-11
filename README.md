@@ -12,7 +12,7 @@ This library provides `ClientFactory` class, which you should use to get the API
 use Paysera\Client\TransfersClient\ClientFactory;
 
 $clientFactory = ClientFactory::create([
-    'base_url' => 'https://my-api.example.com/rest/v1', // optional, in case you need a custom one.
+    'base_url' => 'https://wallet.paysera.com/transfer/rest/v1', // optional, in case you need a custom one.
     'basic' => [                                        // use this, it API requires Basic authentication.
         'username' => 'username',
         'password' => 'password',
@@ -44,6 +44,7 @@ use Paysera\Client\TransfersClientEntity as Entities;
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
 $transferRegistrationParameters->setConvertCurrency($convertCurrency);
+$transferRegistrationParameters->setUserIp($userIp);
     
 $result = $transfersClient->reserveTransfer($id, $transferRegistrationParameters);
 ```
@@ -59,6 +60,7 @@ use Paysera\Client\TransfersClientEntity as Entities;
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
 $transferRegistrationParameters->setConvertCurrency($convertCurrency);
+$transferRegistrationParameters->setUserIp($userIp);
     
 $result = $transfersClient->registerTransfer($id, $transferRegistrationParameters);
 ```
@@ -74,6 +76,7 @@ use Paysera\Client\TransfersClientEntity as Entities;
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
 $transferRegistrationParameters->setConvertCurrency($convertCurrency);
+$transferRegistrationParameters->setUserIp($userIp);
     
 $result = $transfersClient->signTransfer($id, $transferRegistrationParameters);
 ```
@@ -88,17 +91,6 @@ Get transfer.
 $result = $transfersClient->getTransfer($id);
 ```
 ---
-
-
-Get transfers.
-
-
-```php
-
-$result = $transfersClient->getTransfers($transfersFilter);
-```
----
-
 
 Revoke transfer.
 
@@ -132,9 +124,29 @@ $transferInput->setPassword($password);
 $transferInput->setCancelable($cancelable);
 $transferInput->setAutoCurrencyConvert($autoCurrencyConvert);
 $transferInput->setAutoChargeRelatedCard($autoChargeRelatedCard);
+$transferInput->setAutoProcessToDone($autoProcessToDone);
 $transferInput->setReserveUntil($reserveUntil);
+$transferInput->setCallback($callback);
     
 $result = $transfersClient->createTransfer($transferInput);
+```
+---
+
+Get list of transfers by filter
+
+
+```php
+use Paysera\Client\TransfersClientEntity as Entities;
+
+$transfersFilter = new Entities\TransfersFilter();
+
+$transfersFilter->setCreatedDateFrom($createdDateFrom);
+$transfersFilter->setCreatedDateTo($createdDateTo);
+$transfersFilter->setCreditAccountNumber($creditAccountNumber);
+$transfersFilter->setDebitAccountNumber($debitAccountNumber);
+$transfersFilter->setStatuses($statuses);
+    
+$result = $transfersClient->getTransfers($transfersFilter);
 ```
 ---
 

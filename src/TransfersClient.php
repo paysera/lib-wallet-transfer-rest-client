@@ -131,7 +131,6 @@ class TransfersClient
 
         return new Entities\TransferOutput($data);
     }
-
     /**
      * Get list of transfers by filter
      * GET /transfers
@@ -150,4 +149,5 @@ class TransfersClient
 
         return new Entities\FilteredTransfersResult($data, 'transfers');
     }
+
 }

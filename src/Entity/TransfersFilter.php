@@ -95,4 +95,5 @@ class TransfersFilter extends Entity
         $this->set('statuses', $statuses);
         return $this;
     }
+
 }
