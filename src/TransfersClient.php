@@ -36,6 +36,26 @@ class TransfersClient
     }
 
     /**
+     * Provide password for transfer with status `waiting_password`. If operation is successful, transfer status becomes `done`. Available only for internal lib-wallet-transfer-rest-client. Returns error if password provided is invalid.
+     * PUT /transfers/{id}/provide-password
+     *
+     * @param string $id
+     * @param Entities\TransferPassword $transferPassword
+     * @return Entities\TransferOutput
+     */
+    public function provideTransferPassword($id, Entities\TransferPassword $transferPassword)
+    {
+        $request = $this->apiClient->createRequest(
+            RequestMethodInterface::METHOD_PUT,
+            sprintf('transfers/%s/provide-password', urlencode($id)),
+            $transferPassword
+        );
+        $data = $this->apiClient->makeRequest($request);
+
+        return new Entities\TransferOutput($data);
+    }
+
+    /**
      * Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails. This only makes transfer &quot;reserved&quot;, so it&#039;s visible in our Web UI for signing
      * PUT /transfers/{id}/register
      *

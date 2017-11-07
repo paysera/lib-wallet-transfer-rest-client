@@ -51,6 +51,21 @@ $result = $transfersClient->reserveTransfer($id, $transferRegistrationParameters
 ---
 
 
+Provide password for transfer with status `waiting_password`. If operation is successful, transfer status becomes `done`. Available only for internal transfers. Returns error if password provided is invalid.
+
+
+```php
+use Paysera\Client\TransfersClientEntity as Entities;
+
+$transferPassword = new Entities\TransferPassword();
+
+$transferPassword->setValue($value);
+    
+$result = $transfersClient->provideTransferPassword($id, $transferPassword);
+```
+---
+
+
 Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails. This only makes transfer &quot;reserved&quot;, so it&#039;s visible in our Web UI for signing
 
 
