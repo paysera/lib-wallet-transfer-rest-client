@@ -147,7 +147,7 @@ $result = $transfersClient->createTransfer($transferInput);
 ```
 ---
 
-Get list of lib-wallet-transfer-rest-client by filter
+Get list of transfers by filter
 
 
 ```php
