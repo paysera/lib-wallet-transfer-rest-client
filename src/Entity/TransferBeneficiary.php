@@ -71,6 +71,22 @@ class TransferBeneficiary extends Entity
         return $this;
     }
     /**
+     * @return Address|null
+     */
+    public function getAddress()
+    {
+        return (new Address())->setDataByReference($this->getByReference('address'));
+    }
+    /**
+     * @param Address $address
+     * @return $this
+     */
+    public function setAddress(Address $address)
+    {
+        $this->setByReference('address', $address->getDataByReference());
+        return $this;
+    }
+    /**
      * @return BankAccount|null
      */
     public function getBankAccount()
@@ -148,6 +164,38 @@ class TransferBeneficiary extends Entity
     public function setWebmoneyAccount(WebmoneyAccount $webmoneyAccount)
     {
         $this->setByReference('webmoney_account', $webmoneyAccount->getDataByReference());
+        return $this;
+    }
+    /**
+     * @return AdditionalInformation|null
+     */
+    public function getAdditionalInformation()
+    {
+        return (new AdditionalInformation())->setDataByReference($this->getByReference('additional_information'));
+    }
+    /**
+     * @param AdditionalInformation $additionalInformation
+     * @return $this
+     */
+    public function setAdditionalInformation(AdditionalInformation $additionalInformation)
+    {
+        $this->setByReference('additional_information', $additionalInformation->getDataByReference());
+        return $this;
+    }
+    /**
+     * @return ClientIdentifier|null
+     */
+    public function getClientIdentifier()
+    {
+        return (new ClientIdentifier())->setDataByReference($this->getByReference('client_identifier'));
+    }
+    /**
+     * @param ClientIdentifier $clientIdentifier
+     * @return $this
+     */
+    public function setClientIdentifier(ClientIdentifier $clientIdentifier)
+    {
+        $this->setByReference('client_identifier', $clientIdentifier->getDataByReference());
         return $this;
     }
 }
