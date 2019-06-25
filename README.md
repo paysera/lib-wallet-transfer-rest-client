@@ -11,7 +11,7 @@ This library provides `ClientFactory` class, which you should use to get the API
 ```php
 use Paysera\Client\TransfersClient\ClientFactory;
 
-$clientFactory = ClientFactory::create([
+$clientFactory = new ClientFactory([
     'base_url' => 'https://wallet.paysera.com/transfer/rest/v1', // optional, in case you need a custom one.
     'basic' => [                                        // use this, it API requires Basic authentication.
         'username' => 'username',
