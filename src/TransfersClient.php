@@ -15,6 +15,11 @@ class TransfersClient
         $this->apiClient = $apiClient;
     }
 
+    public function withOptions(array $options)
+    {
+        return new TransfersClient($this->apiClient->withOptions($options));
+    }
+
     /**
      * It reserves funds for transfer and makes it &quot;reserved&quot;. It&#039;s enough for transfer to be processed. If there are not enough funds, any limits are reached etc., transfer will be still &quot;new&quot; and no action will take place. Returns error if no funds available.
      * PUT /transfers/{id}/reserve
