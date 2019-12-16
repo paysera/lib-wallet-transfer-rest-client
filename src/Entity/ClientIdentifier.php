@@ -6,6 +6,11 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class ClientIdentifier extends Entity
 {
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string|null
      */
@@ -155,6 +160,9 @@ class ClientIdentifier extends Entity
      */
     public function getDateAndPlaceOfBirth()
     {
+        if ($this->get('date_and_place_of_birth') === null) {
+            return null;
+        }
         return (new ClientIdentifierTypeDateAndPlaceOfBirth())->setDataByReference($this->getByReference('date_and_place_of_birth'));
     }
     /**
@@ -171,6 +179,9 @@ class ClientIdentifier extends Entity
      */
     public function getOther()
     {
+        if ($this->get('other') === null) {
+            return null;
+        }
         return (new ClientIdentifierTypeOther())->setDataByReference($this->getByReference('other'));
     }
     /**

@@ -12,7 +12,7 @@ This library provides `ClientFactory` class, which you should use to get the API
 use Paysera\Client\TransfersClient\ClientFactory;
 
 $clientFactory = new ClientFactory([
-    'base_url' => 'https://wallet.paysera.com/transfer/rest/v1', // optional, in case you need a custom one.
+    'base_url' => 'https://wallet.paysera.com/transfer/rest/v1/', // optional, in case you need a custom one.
     'basic' => [                                        // use this, it API requires Basic authentication.
         'username' => 'username',
         'password' => 'password',
@@ -39,7 +39,7 @@ It reserves funds for transfer and makes it &quot;reserved&quot;. It&#039;s enou
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
@@ -55,7 +55,7 @@ Provide password for transfer with status `waiting_password`. If operation is su
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transferPassword = new Entities\TransferPassword();
 
@@ -70,7 +70,7 @@ Make transfer visible in frontend for signing. If currency convert operations ar
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
@@ -86,7 +86,7 @@ Signs the transfer
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transferRegistrationParameters = new Entities\TransferRegistrationParameters();
 
@@ -122,7 +122,7 @@ Create transfer in the system. Created transfer is invisible and will be deleted
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transferInput = new Entities\TransferInput();
 
@@ -147,11 +147,11 @@ $result = $transfersClient->createTransfer($transferInput);
 ```
 ---
 
-Get list of transfers by filter
+Standard SQL-style Result filtering
 
 
 ```php
-use Paysera\Client\TransfersClientEntity as Entities;
+use Paysera\Client\TransfersClient\Entity as Entities;
 
 $transfersFilter = new Entities\TransfersFilter();
 

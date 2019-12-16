@@ -21,7 +21,7 @@ class TransfersClient
     }
 
     /**
-     * It reserves funds for transfer and makes it &quot;reserved&quot;. It&#039;s enough for transfer to be processed. If there are not enough funds, any limits are reached etc., transfer will be still &quot;new&quot; and no action will take place. Returns error if no funds available.
+     * It reserves funds for transfer and makes it "reserved". It's enough for transfer to be processed. If there are not enough funds, any limits are reached etc., transfer will be still "new" and no action will take place. Returns error if no funds available.
      * PUT /transfers/{id}/reserve
      *
      * @param string $id
@@ -41,7 +41,7 @@ class TransfersClient
     }
 
     /**
-     * Provide password for transfer with status `waiting_password`. If operation is successful, transfer status becomes `done`. Available only for internal lib-wallet-transfer-rest-client. Returns error if password provided is invalid.
+     * Provide password for transfer with status `waiting_password`. If operation is successful, transfer status becomes `done`. Available only for internal transfers. Returns error if password provided is invalid.
      * PUT /transfers/{id}/provide-password
      *
      * @param string $id
@@ -61,7 +61,7 @@ class TransfersClient
     }
 
     /**
-     * Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails. This only makes transfer &quot;reserved&quot;, so it&#039;s visible in our Web UI for signing
+     * Make transfer visible in frontend for signing. If currency convert operations are related to transfer, they are done when transfer becomes `reserved`. If there are expectations in currency convert requests, transfer becomes `failed` together with related conversion request(s) if those expectations fails. This only makes transfer "reserved", so it's visible in our Web UI for signing
      * PUT /transfers/{id}/register
      *
      * @param string $id
@@ -118,6 +118,7 @@ class TransfersClient
 
         return new Entities\TransferOutput($data);
     }
+
     /**
      * Revoke transfer.
      * DELETE /transfers/{id}
@@ -156,8 +157,9 @@ class TransfersClient
 
         return new Entities\TransferOutput($data);
     }
+
     /**
-     * Get list of transfers by filter
+     * Standard SQL-style Result filtering
      * GET /transfers
      *
      * @param Entities\TransfersFilter $transfersFilter
@@ -174,5 +176,4 @@ class TransfersClient
 
         return new Entities\FilteredTransfersResult($data, 'transfers');
     }
-
 }

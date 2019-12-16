@@ -6,6 +6,24 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class TransferOutput extends Entity
 {
+    const STATUS_NEW = 'new';
+    const STATUS_REGISTERED = 'registered';
+    const STATUS_WAITING_FUNDS = 'waiting_funds';
+    const STATUS_WAITING_REGISTRATION = 'waiting_registration';
+    const STATUS_WAITING_PASSWORD = 'waiting_password';
+    const STATUS_RESERVED = 'reserved';
+    const STATUS_FROZEN = 'frozen';
+    const STATUS_PROCESSING = 'processing';
+    const STATUS_DONE = 'done';
+    const STATUS_REJECTED = 'rejected';
+    const STATUS_REVOKED = 'revoked';
+    const STATUS_FAILED = 'failed';
+
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string
      */
@@ -36,6 +54,22 @@ class TransferOutput extends Entity
     public function setStatus($status)
     {
         $this->set('status', $status);
+        return $this;
+    }
+    /**
+     * @return TransferBeneficiary
+     */
+    public function getBeneficiary()
+    {
+        return (new TransferBeneficiary())->setDataByReference($this->getByReference('beneficiary'));
+    }
+    /**
+     * @param TransferBeneficiary $beneficiary
+     * @return $this
+     */
+    public function setBeneficiary(TransferBeneficiary $beneficiary)
+    {
+        $this->setByReference('beneficiary', $beneficiary->getDataByReference());
         return $this;
     }
     /**
@@ -75,6 +109,9 @@ class TransferOutput extends Entity
      */
     public function getPerformedAt()
     {
+        if ($this->get('performed_at') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('performed_at'));
     }
     /**
@@ -91,6 +128,9 @@ class TransferOutput extends Entity
      */
     public function getFailureStatus()
     {
+        if ($this->get('failure_status') === null) {
+            return null;
+        }
         return (new TransferFailureStatus())->setDataByReference($this->getByReference('failure_status'));
     }
     /**
@@ -107,6 +147,9 @@ class TransferOutput extends Entity
      */
     public function getOutCommission()
     {
+        if ($this->get('out_commission') === null) {
+            return null;
+        }
         return (new Money())->setDataByReference($this->getByReference('out_commission'));
     }
     /**
@@ -123,6 +166,9 @@ class TransferOutput extends Entity
      */
     public function getAdditionalInformation()
     {
+        if ($this->get('additional_information') === null) {
+            return null;
+        }
         return (new TransferAdditionalData())->setDataByReference($this->getByReference('additional_information'));
     }
     /**
@@ -139,6 +185,9 @@ class TransferOutput extends Entity
      */
     public function getPassword()
     {
+        if ($this->get('password') === null) {
+            return null;
+        }
         return (new TransferPasswordOutput())->setDataByReference($this->getByReference('password'));
     }
     /**
@@ -148,6 +197,22 @@ class TransferOutput extends Entity
     public function setPassword(TransferPasswordOutput $password)
     {
         $this->setByReference('password', $password->getDataByReference());
+        return $this;
+    }
+    /**
+     * @return boolean|null
+     */
+    public function isAllowedToCancel()
+    {
+        return $this->get('allowed_to_cancel');
+    }
+    /**
+     * @param boolean $allowedToCancel
+     * @return $this
+     */
+    public function setAllowedToCancel($allowedToCancel)
+    {
+        $this->set('allowed_to_cancel', $allowedToCancel);
         return $this;
     }
 }

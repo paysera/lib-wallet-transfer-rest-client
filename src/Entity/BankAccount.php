@@ -6,6 +6,11 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class BankAccount extends Entity
 {
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string|null
      */
@@ -107,6 +112,9 @@ class BankAccount extends Entity
      */
     public function getBankAddress()
     {
+        if ($this->get('bank_address') === null) {
+            return null;
+        }
         return (new Address())->setDataByReference($this->getByReference('bank_address'));
     }
     /**
@@ -139,6 +147,9 @@ class BankAccount extends Entity
      */
     public function getCorrespondentBank()
     {
+        if ($this->get('correspondent_bank') === null) {
+            return null;
+        }
         return (new CorrespondentBank())->setDataByReference($this->getByReference('correspondent_bank'));
     }
     /**

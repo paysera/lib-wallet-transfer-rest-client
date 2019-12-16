@@ -6,6 +6,16 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class TransferPurpose extends Entity
 {
+    const CODE_CASH_IN = 'cash_in';
+    const CODE_CASH_OUT = 'cash_out';
+    const CODE_PAYMENT = 'payment';
+    const CODE_APP_TRANSFER = 'app_transfer';
+
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string|null
      */
@@ -36,6 +46,22 @@ class TransferPurpose extends Entity
     public function setReference($reference)
     {
         $this->set('reference', $reference);
+        return $this;
+    }
+    /**
+     * @return string|null
+     */
+    public function getPurposeCode()
+    {
+        return $this->get('purpose_code');
+    }
+    /**
+     * @param string $purposeCode
+     * @return $this
+     */
+    public function setPurposeCode($purposeCode)
+    {
+        $this->set('purpose_code', $purposeCode);
         return $this;
     }
     /**
@@ -75,6 +101,9 @@ class TransferPurpose extends Entity
      */
     public function getDetailsOptions()
     {
+        if ($this->get('details_options') === null) {
+            return null;
+        }
         return (new DetailsOptions())->setDataByReference($this->getByReference('details_options'));
     }
     /**

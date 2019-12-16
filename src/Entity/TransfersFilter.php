@@ -2,18 +2,20 @@
 
 namespace Paysera\Client\TransfersClient\Entity;
 
-use Paysera\Component\RestClientCommon\Entity\Entity;
+use Paysera\Component\RestClientCommon\Entity\Filter;
 
-class TransfersFilter extends Entity
+class TransfersFilter extends Filter
 {
     /**
      * @return \DateTimeImmutable|null
      */
     public function getCreatedDateFrom()
     {
+        if ($this->get('created_date_from') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('created_date_from'));
     }
-
     /**
      * @param \DateTimeInterface $createdDateFrom
      * @return $this
@@ -23,15 +25,16 @@ class TransfersFilter extends Entity
         $this->set('created_date_from', $createdDateFrom->getTimestamp());
         return $this;
     }
-
     /**
      * @return \DateTimeImmutable|null
      */
     public function getCreatedDateTo()
     {
+        if ($this->get('created_date_to') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('created_date_to'));
     }
-
     /**
      * @param \DateTimeInterface $createdDateTo
      * @return $this
@@ -41,7 +44,6 @@ class TransfersFilter extends Entity
         $this->set('created_date_to', $createdDateTo->getTimestamp());
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -49,7 +51,6 @@ class TransfersFilter extends Entity
     {
         return $this->get('credit_account_number');
     }
-
     /**
      * @param string $creditAccountNumber
      * @return $this
@@ -59,7 +60,6 @@ class TransfersFilter extends Entity
         $this->set('credit_account_number', $creditAccountNumber);
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -67,7 +67,6 @@ class TransfersFilter extends Entity
     {
         return $this->get('debit_account_number');
     }
-
     /**
      * @param string $debitAccountNumber
      * @return $this
@@ -77,7 +76,6 @@ class TransfersFilter extends Entity
         $this->set('debit_account_number', $debitAccountNumber);
         return $this;
     }
-
     /**
      * @return string[]|null
      */
@@ -85,7 +83,6 @@ class TransfersFilter extends Entity
     {
         return $this->get('statuses');
     }
-
     /**
      * @param string[] $statuses
      * @return $this
@@ -95,5 +92,4 @@ class TransfersFilter extends Entity
         $this->set('statuses', $statuses);
         return $this;
     }
-
 }

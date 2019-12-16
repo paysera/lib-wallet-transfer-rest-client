@@ -2,8 +2,8 @@
 
 namespace Paysera\Client\TransfersClient;
 
-use Paysera\Component\RestClientCommon\Client\ApiClient;
 use Paysera\Component\RestClientCommon\Util\ClientFactoryAbstract;
+use Paysera\Component\RestClientCommon\Client\ApiClient;
 
 class ClientFactory extends ClientFactoryAbstract
 {
@@ -19,7 +19,7 @@ class ClientFactory extends ClientFactoryAbstract
         }
 
         $defaultUrlParameters = [];
-
+        
         $options['url_parameters'] = $this->resolveDefaultUrlParameters($defaultUrlParameters, $options);
         $this->apiClient = $this->createApiClient($options);
     }

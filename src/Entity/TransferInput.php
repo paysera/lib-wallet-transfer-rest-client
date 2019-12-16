@@ -6,6 +6,16 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class TransferInput extends Entity
 {
+    const CHARGE_TYPE_SHA = 'SHA';
+    const CHARGE_TYPE_OUR = 'OUR';
+    const URGENCY_STANDARD = 'standard';
+    const URGENCY_URGENT = 'urgent';
+
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return Money
      */
@@ -59,6 +69,9 @@ class TransferInput extends Entity
      */
     public function getFinalBeneficiary()
     {
+        if ($this->get('final_beneficiary') === null) {
+            return null;
+        }
         return (new FinalBeneficiary())->setDataByReference($this->getByReference('final_beneficiary'));
     }
     /**
@@ -75,6 +88,9 @@ class TransferInput extends Entity
      */
     public function getPerformAt()
     {
+        if ($this->get('perform_at') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('perform_at'));
     }
     /**
@@ -123,6 +139,9 @@ class TransferInput extends Entity
      */
     public function getNotifications()
     {
+        if ($this->get('notifications') === null) {
+            return null;
+        }
         return (new TransferNotifications())->setDataByReference($this->getByReference('notifications'));
     }
     /**
@@ -155,6 +174,9 @@ class TransferInput extends Entity
      */
     public function getPassword()
     {
+        if ($this->get('password') === null) {
+            return null;
+        }
         return (new TransferPassword())->setDataByReference($this->getByReference('password'));
     }
     /**
@@ -235,6 +257,9 @@ class TransferInput extends Entity
      */
     public function getReserveUntil()
     {
+        if ($this->get('reserve_until') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('reserve_until'));
     }
     /**
@@ -251,6 +276,9 @@ class TransferInput extends Entity
      */
     public function getCallback()
     {
+        if ($this->get('callback') === null) {
+            return null;
+        }
         return (new TransferCallback())->setDataByReference($this->getByReference('callback'));
     }
     /**

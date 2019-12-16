@@ -6,6 +6,11 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class OutCommissionRule extends Entity
 {
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string|null
      */
@@ -27,6 +32,9 @@ class OutCommissionRule extends Entity
      */
     public function getMin()
     {
+        if ($this->get('min') === null) {
+            return null;
+        }
         return (new Money())->setDataByReference($this->getByReference('min'));
     }
     /**
@@ -43,6 +51,9 @@ class OutCommissionRule extends Entity
      */
     public function getMax()
     {
+        if ($this->get('max') === null) {
+            return null;
+        }
         return (new Money())->setDataByReference($this->getByReference('max'));
     }
     /**
@@ -59,6 +70,9 @@ class OutCommissionRule extends Entity
      */
     public function getFix()
     {
+        if ($this->get('fix') === null) {
+            return null;
+        }
         return (new Money())->setDataByReference($this->getByReference('fix'));
     }
     /**

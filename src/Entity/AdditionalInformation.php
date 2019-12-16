@@ -6,6 +6,14 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class AdditionalInformation extends Entity
 {
+    const TYPE_NATURAL = 'natural';
+    const TYPE_LEGAL = 'legal';
+
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return string
      */

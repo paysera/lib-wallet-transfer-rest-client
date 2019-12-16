@@ -6,11 +6,19 @@ use Paysera\Component\RestClientCommon\Entity\Entity;
 
 class TransferAdditionalData extends Entity
 {
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+    }
+
     /**
      * @return \DateTimeImmutable|null
      */
     public function getEstimatedProcessingDate()
     {
+        if ($this->get('estimated_processing_date') === null) {
+            return null;
+        }
         return (new \DateTimeImmutable())->setTimestamp($this->get('estimated_processing_date'));
     }
     /**
@@ -27,6 +35,9 @@ class TransferAdditionalData extends Entity
      */
     public function getOutCommissionRule()
     {
+        if ($this->get('out_commission_rule') === null) {
+            return null;
+        }
         return (new OutCommissionRule())->setDataByReference($this->getByReference('out_commission_rule'));
     }
     /**
@@ -43,6 +54,9 @@ class TransferAdditionalData extends Entity
      */
     public function getOriginalOutCommission()
     {
+        if ($this->get('original_out_commission') === null) {
+            return null;
+        }
         return (new Money())->setDataByReference($this->getByReference('original_out_commission'));
     }
     /**
